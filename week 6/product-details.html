@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Online Bakery Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Bakery Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Details Section -->
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Placeholder image for the product, dynamic product selection based on query params could be handled with JavaScript -->
+                <img src="images/croissant.jpg" class="img-fluid" alt="Croissant">
+            </div>
+            <div class="col-md-6">
+                <h2>Croissant</h2>
+                <p class="text-muted">$2.00</p>
+                <p>Freshly baked buttery croissant, perfect for breakfast or a snack.</p>
+                <button class="btn btn-primary">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2024 Online Bakery Shop | <a href="contact.html">Contact Us</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const product = urlParams.get('product');
+    
+            // Simple product details (can be fetched from a server in real scenarios)
+            const products = {
+                croissant: {
+                    name: "Croissant",
+                    price: "$2.00",
+                    description: "Freshly baked buttery croissant, perfect for breakfast or a snack.",
+                    image: "images/croissant.jpg"
+                },
+                muffin: {
+                    name: "Muffin",
+                    price: "$1.50",
+                    description: "Moist and fluffy muffins available in various flavors.",
+                    image: "images/muffin.jpg"
+                },
+                bagel: {
+                    name: "Bagel",
+                    price: "$1.20",
+                    description: "Chewy and delicious bagels, a perfect breakfast treat.",
+                    image: "images/bagel.jpg"
+                },
+                cupcake: {
+                    name: "Cupcake",
+                    price: "$2.50",
+                    description: "Deliciously sweet cupcakes with a variety of frosting options.",
+                    image: "images/cupcake.jpg"
+                },
+                donut: {
+                    name: "Donut",
+                    price: "$1.00",
+                    description: "Soft and sugary donuts, ideal for satisfying your sweet tooth.",
+                    image: "images/donut.jpg"
+                }
+            };
+    
+            // Update the page content based on the selected product
+            if (products[product]) {
+                document.querySelector('h2').textContent = products[product].name;
+                document.querySelector('.text-muted').textContent = products[product].price;
+                document.querySelector('.product-description').textContent = products[product].description;
+                document.querySelector('img').setAttribute('src', products[product].image);
+                document.querySelector('img').setAttribute('alt', products[product].name);
+            } else {
+                // Handle case when no product is found (optional)
+                document.querySelector('h2').textContent = "Product Not Found";
+            }
+        });
+    </script>
+    
+</body>
+</html>
